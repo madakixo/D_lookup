@@ -1,111 +1,100 @@
-## Leveraging NLP for Medical Prescription Administration
-### Streamlit App Project by Omdena Kaduna Local Chapter Initiated by Jamaludeen Madaki Collaboratively executed by the Project Team
+# 🩺 Disease Prediction & AI Health Assistant
+### Leveraging NLP for Medical Prescription Administration
+**Omdena Kaduna Local Chapter** • *Initiated by Jamaludeen Madaki*
 
-Overview This Streamlit-based application leverages Natural Language Processing (NLP) to predict diseases and recommend treatments based on user-input symptoms.
+---
 
-Developed by the Omdena Kaduna Local Chapter, the project aims to demonstrate how AI can assist in medical prescription administration by analyzing symptom data, providing disease predictions with confidence scores, and offering a lookup feature for disease-specific symptoms. 
+## 📖 Overview
+This application uses **Natural Language Processing (NLP)** and **PyTorch** to predict potential diseases and suggest treatments based on user-provided symptoms. Designed by the Omdena Kaduna Chapter, it serves as an educational tool to demonstrate how AI can support healthcare in regions with limited medical expertise.
 
-The app integrates a PyTorch-trained neural network, TF-IDF vectorization, and FAISS for similarity search, making it a robust tool for educational exploration in healthcare.
+## 🚀 Features
+- **Intelligent Symptom Input**: Select common symptoms from a pre-defined list or enter custom descriptions in plain text.
+- **AI-Powered Prediction**: Get real-time disease predictions with confidence scores using a custom-trained neural network.
+- **Dynamic Disease Lookup**: Explore an extensive health database with symptoms, treatments, and likely causes for hundreds of conditions.
+- **Interactive Visualizations**: View top alternative predictions through intuitive Plotly charts.
+- **Data-Driven Analysis**: Automatic logging of predictions and integration with Google Sheets for health trend analysis.
+- **Search History**: Track your recent symptom searches within the session.
 
-Leveraging NLP for Medical Prescription Administration Natural Language Processing (NLP) plays a pivotal role in this project by transforming unstructured symptom descriptions into structured data for analysis. 
-The app employs a TF-IDF (Term Frequency-Inverse Document Frequency) vectorizer to convert textual symptom inputs into numerical representations, which are then processed by a custom-trained neural network (OptimizedDiseaseClassifier) to predict diseases. 
-This approach enables: Symptom-to-Disease Mapping: Accurately identifying potential diseases from free-text or selected symptoms.
+---
 
-Confidence-Based Predictions: Providing probabilistic outputs to guide decision-making.
+## 🛠️ Installation & Setup
 
-Scalability: The model can be extended with more data to cover additional diseases and symptoms.
+### Prerequisites
+- Python 3.9 or higher
+- Git
 
-Educational Value: Offering a lookup feature to explore symptoms associated with specific diseases, enhancing medical knowledge dissemination.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Omdena-Kaduna/NLP-Medical-Prescription.git
+cd NLP-Medical-Prescription
+```
 
-By bridging NLP and healthcare, this project showcases how AI can support medical professionals and communities in resource-limited settings, such as Kaduna, Nigeria, where access to immediate healthcare expertise may be constrained.
+### 2. Set Up Virtual Environment
+```bash
+# Example for Linux/Mac
+# python -m venv venv
+# source venv/bin/activate
+```
 
-Features Symptom Input: Users can select common symptoms from a dropdown or enter custom symptoms in a text area.
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-Disease Prediction: Predicts diseases with confidence scores and suggests treatments based on a pre-trained model.
+### 4. Project Structure
+The project is organized into a modular structure for better maintainability:
+- `core/`: Shared logic, model definitions, and utility functions.
+- `models/`: Machine learning artifacts (`best_model.pth`, `tfidf_vectorizer.pkl`, etc.).
+- `data/`: Dataset files (`processed_diseases-priority.csv`).
+- `tests/`: Automated test suite.
 
-**Similar - Disease Lookup: Allows users to look up symptoms associated with specific diseases from a predefined dataset.
+> **Note**: Model files are managed via Git LFS. Ensure you have the actual `.pth` and `.pkl` files in the `models/` directory.
 
-Prediction History: Tracks past predictions for reference.
+### 5. Google Sheets Integration (Optional)
+To enable data collection, place your Google Cloud service account JSON in the root as `credentials.json`.
 
-Feedback System: Collects user feedback for continuous improvement.
+---
 
-Interactive Visualizations: Displays top predictions using Plotly bar charts.
+## 🕹️ How to Use & Operate
 
-Installation Prerequisites Python 3.8 or higher
+### Running the App
+Launch the main interface using Streamlit:
+```bash
+streamlit run app2026.py
+```
+The application will open in your default browser at `http://localhost:8501`.
 
-Git (optional, for cloning the repository)
+### Making a Prediction (Quick Brief)
+1. **Input Symptoms**: Use the multi-select box to pick from known symptoms. For symptoms not listed, type them into the text area below (comma-separated).
+2. **Set Confidence**: Use the sidebar slider to adjust the "Confidence Threshold." Predictions below this level will be marked as "Uncertain."
+3. **Analyze**: Click the **"🔍 Analyze & Predict"** button. The AI will process your input and provide:
+   - The most likely disease.
+   - A suggested treatment plan from the dataset.
+   - A probability score (confidence).
+   - A chart showing the top 3 alternative possibilities.
 
-Setup Instructions Clone the Repository
+### Performing Analysis
+- **Review History**: Scroll down to the "Search History" section to see a record of your symptoms and results during this session.
+- **Explore the Database**: Use the "Health Database" section in the right column to lookup specific diseases and see their typical profiles (Symptoms, Treatments, and Causes).
 
-`git clone https://github.com/Omdena-Kaduna/NLP-Medical-Prescription.git` 
-`cd NLP-Medical-Prescription`
+---
 
-Create a Virtual Environment (optional but recommended)
+## 🧪 Testing
+Run the automated test suite to verify system integrity:
+```bash
+./run_tests.sh
+```
 
-`python -m venv venv source venv/bin/activate`  # On Windows: `venv\Scripts\activate`
+## ⚠️ Limitations
+- **Educational Purpose Only**: This app is **not** a substitute for professional medical advice, diagnosis, or treatment.
+- **Dataset Dependency**: Predictions are only as accurate as the underlying training data.
+- **LFS Required**: The application will not function with Git LFS pointer files; actual weights must be downloaded.
 
-Install Dependencies Install the required packages listed in requirements.txt:
+## 🤝 Contributing
+Contributions are welcome! Please fork the repository and open a pull request with your improvements.
 
-`pip install -r requirements.txt`
+## 📜 License
+This project is licensed under the MIT License.
 
-Prepare Model and Data
-Place the model artifacts (tfidf_vectorizer.pkl, best_model.pth, label_encoder.pkl, faiss_index.bin) in the model_classifier-002b folder.
-
-Ensure the dataset file processed_diseases-priority.csv is in the root directory.
-
-_Run the App _
-
-`streamlit run app.py`
-
-Open your browser and navigate to http://localhost:8501.
-
-Requirements Create a file named requirements.txt with the following content:
-
-streamlit==1.31.1 torch==2.3.0 pandas==2.2.2 numpy==1.26.4 scikit-learn==1.4.2 faiss-cpu==1.8.0 plotly==5.22.0
-
-These versions are compatible as of April 2025; adjust them based on your environment or project updates. 
-
-Usage Launch the App: Run the command above to start the Streamlit server.
-
-Input Symptoms: Select symptoms from the dropdown or type them manually in the text area.
-
-Predict: Click the "Predict" button to get disease predictions, treatments, and confidence scores.
-
-Lookup Diseases: Use the "Lookup Symptoms by Disease" section to explore symptoms for a specific disease.
-
-Review History: Check past predictions in the "Prediction History" section.
-
-Provide Feedback: Share your experience via the feedback form.
-
-Project Structure
-
-NLP-Medical-Prescription/ │ ├── model_classifier-002b/ # Folder for model artifacts │ ├── tfidf_vectorizer.pkl │ ├── best_model.pth │ ├── label_encoder.pkl │ └── faiss_index.bin │ ├── processed_diseases-priority.csv # Dataset file ├── app.py # Main Streamlit application script ├── requirements.txt # Dependency list └── README.md # This file
-
-Limitations Educational Purpose: This app is not a substitute for professional medical advice. 
-**Always consult a healthcare provider for diagnosis and treatment**.
-
-Dataset Dependency: Predictions and lookups rely on the accuracy and completeness of processed_diseases-priority.csv.
-
-Model Scope: Limited to diseases and symptoms in the training data.
-
-Contributing Contributions are welcome! To contribute: Fork the repository.
-
-Create a feature branch (`git checkout -b` feature/YourFeature).
-
-Commit your changes (`git commit -m` "Add your feature").
-
-Push to the branch (`git push origin` feature/YourFeature).
-
-Open a pull request.
-
-Please adhere to the coding standards and include tests where applicable. 
-Acknowledgments Omdena Kaduna Local Chapter: For fostering innovation and collaboration.
-
-Jamaludeen Madaki: Project initiator and visionary.
-
-Project Team: For their collaborative efforts in building this tool.
-
-Open Source Community: For providing the tools (Streamlit, PyTorch, etc.) that made this possible.
-
-License This project is licensed under the MIT License. See the LICENSE file for details. 
-Contact For questions or support, reach out to the Omdena Kaduna Local Chapter via Omdena or contact Jamaludeen Madaki directly through the project repository.
+## 📧 Contact
+Omdena Kaduna Local Chapter via Omdena or Jamaludeen Madaki.
